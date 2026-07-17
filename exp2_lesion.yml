@@ -1,0 +1,11 @@
+seed: 12345
+episodes: 20
+steps_per_episode: 400
+xml_file: "armscene.xml"
+output_csv: "results_exp2_lesion.csv"
+experiment: 2
+fixed_context: "REWARD_SEEKING"
+lesion: "parietal"   # change to "pfc" / "basal_ganglia" / "cerebellum" / "none"
+dynamic_targets: false
+sensor_noise_std: 0.0
+random_force: false

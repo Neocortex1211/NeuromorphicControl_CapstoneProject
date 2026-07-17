@@ -1,0 +1,11 @@
+seed: 12345
+episodes: 20
+steps_per_episode: 400
+xml_file: "armscene.xml"
+output_csv: "results_exp1_behavioral.csv"
+experiment: 1
+fixed_context: "EXPLORATION"
+lesion: "none"
+dynamic_targets: false
+sensor_noise_std: 0.0
+random_force: false

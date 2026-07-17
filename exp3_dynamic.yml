@@ -1,0 +1,16 @@
+seed: 12345
+episodes: 10
+steps_per_episode: 400
+xml_file: "armscene.xml"
+output_csv: "results_exp3_dynamic.csv"
+experiment: 3
+fixed_context: "REWARD_SEEKING"
+lesion: "none"
+dynamic_targets: true
+moving_after_episode: 0
+target_motion: "sin"   # options: sin, circle, random
+target_speed: 0.10
+target_radius: 0.12
+random_walk_std: 0.002
+sensor_noise_std: 0.01
+random_force: false

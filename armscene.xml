@@ -1,0 +1,248 @@
+<mujoco model="BrainInspiredManipulator">
+
+    <!-- ================================================= -->
+    <!-- Physics -->
+    <!-- ================================================= -->
+
+    <option timestep="0.002"
+            gravity="0 0 0"
+            integrator="RK4"/>
+
+    <visual>
+
+        <headlight diffuse="0.7 0.7 0.7"/>
+
+    </visual>
+
+    <worldbody>
+
+        <!-- ================================================= -->
+        <!-- Lighting -->
+        <!-- ================================================= -->
+
+        <light pos="0 0 2"/>
+
+        <geom
+            type="plane"
+            size="4 4 0.1"
+            rgba="0.95 0.95 0.95 1"/>
+
+        <!-- ================================================= -->
+        <!-- Robot -->
+        <!-- ================================================= -->
+
+        <body name="base"
+              pos="0 0 0">
+
+            <geom
+                type="cylinder"
+                size="0.08 0.04"
+                rgba="0.15 0.15 0.15 1"/>
+
+            <!-- Shoulder -->
+
+            <joint
+                name="shoulder"
+                type="hinge"
+                axis="0 0 1"
+                damping="5"
+                armature="0.02"
+                frictionloss="0.2"/>
+
+            <geom
+                type="sphere"
+                size="0.045"
+                rgba="0.25 0.35 0.85 1"/>
+
+            <!-- Upper Arm -->
+
+            <geom
+                type="capsule"
+                fromto="0 0 0 0.40 0 0"
+                size="0.030"
+                mass="0.80"
+                rgba="0.20 0.45 0.95 1"/>
+
+            <!-- Forearm -->
+
+            <body name="forearm"
+                  pos="0.40 0 0">
+
+                <joint
+                    name="elbow"
+                    type="hinge"
+                    axis="0 0 1"
+                    damping="4"
+                    armature="0.015"
+                    frictionloss="0.15"/>
+
+                <geom
+                    type="sphere"
+                    size="0.04"
+                    rgba="0.20 0.20 0.20 1"/>
+
+                <geom
+                    type="capsule"
+                    fromto="0 0 0 0.35 0 0"
+                    size="0.025"
+                    mass="0.60"
+                    rgba="0.20 0.80 0.25 1"/>
+
+                <!-- Hand -->
+
+                <geom
+                    type="sphere"
+                    pos="0.35 0 0"
+                    size="0.03"
+                    rgba="1.0 0.90 0.0 1"/>
+
+                <site
+                    name="hand"
+                    pos="0.35 0 0"
+                    size="0.012"
+                    rgba="1 1 0 1"/>
+
+            </body>
+
+        </body>
+
+        <!-- ================================================= -->
+        <!-- Dynamic Targets -->
+        <!-- ================================================= -->
+
+        <!-- RED -->
+
+        <body name="red_target"
+              pos="0.55 0.20 0">
+
+            <joint
+                name="red_x"
+                type="slide"
+                axis="1 0 0"
+                damping="1"
+                armature="0.001"
+                range="-0.25 0.25"/>
+
+            <joint
+                name="red_y"
+                type="slide"
+                axis="0 1 0"
+                damping="1"
+                armature="0.001"
+                range="-0.25 0.25"/>
+
+            <geom
+                type="sphere"
+                size="0.035"
+                mass="0.01"
+                rgba="1 0.1 0.1 1"
+                contype="0"
+                conaffinity="0"/>
+
+            <site
+                name="target_red"
+                pos="0 0 0"
+                size="0.016"
+                rgba="1 0 0 1"/>
+
+        </body>
+
+        <!-- GREEN -->
+
+        <body name="green_target"
+              pos="-0.15 0.45 0">
+
+            <joint
+                name="green_x"
+                type="slide"
+                axis="1 0 0"
+                damping="1"
+                armature="0.001"
+                range="-0.25 0.25"/>
+
+            <joint
+                name="green_y"
+                type="slide"
+                axis="0 1 0"
+                damping="1"
+                armature="0.001"
+                range="-0.25 0.25"/>
+
+            <geom
+                type="sphere"
+                size="0.035"
+                mass="0.01"
+                rgba="0.1 0.95 0.1 1"
+                contype="0"
+                conaffinity="0"/>
+
+            <site
+                name="target_green"
+                pos="0 0 0"
+                size="0.016"
+                rgba="0 1 0 1"/>
+
+        </body>
+
+        <!-- BLUE -->
+
+        <body name="blue_target"
+              pos="0.30 -0.35 0">
+
+            <joint
+                name="blue_x"
+                type="slide"
+                axis="1 0 0"
+                damping="1"
+                armature="0.001"
+                range="-0.25 0.25"/>
+
+            <joint
+                name="blue_y"
+                type="slide"
+                axis="0 1 0"
+                damping="1"
+                armature="0.001"
+                range="-0.25 0.25"/>
+
+            <geom
+                type="sphere"
+                size="0.035"
+                mass="0.01"
+                rgba="0.15 0.35 1 1"
+                contype="0"
+                conaffinity="0"/>
+
+            <site
+                name="target_blue"
+                pos="0 0 0"
+                size="0.016"
+                rgba="0 0 1 1"/>
+
+        </body>
+
+    </worldbody>
+
+    <!-- ================================================= -->
+    <!-- Actuators -->
+    <!-- ================================================= -->
+
+    <actuator>
+
+        <motor
+            name="shoulder_motor"
+            joint="shoulder"
+            gear="450"
+            ctrllimited="true"
+            ctrlrange="-2 2"/>
+
+        <motor
+            name="elbow_motor"
+            joint="elbow"
+            gear="350"
+            ctrllimited="true"
+            ctrlrange="-2 2"/>
+
+    </actuator>
+
+</mujoco>
